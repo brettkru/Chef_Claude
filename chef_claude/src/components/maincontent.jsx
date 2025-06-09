@@ -10,8 +10,6 @@ export default function MainContent() {
   });
 
   function handleSubmit(event) {
-    
-
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const newIngredient = formData.get("ingredient");
