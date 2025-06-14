@@ -1,9 +1,7 @@
-import React from "react"
+import React from "react";
 
 export default function MainContent() {
-
-  const [myingredients, setMyIngredients] = React.useState([])
-
+  const [myingredients, setMyIngredients] = React.useState([]);
 
   const ingredientsList = myingredients.map((ingredient) => {
     return <li key={ingredient}>{ingredient}</li>;
@@ -11,7 +9,10 @@ export default function MainContent() {
 
   function addIngredient(formData) {
     const newIngredient = formData.get("ingredient");
-    setMyIngredients(prevIngredientList => [...prevIngredientList, newIngredient])
+    setMyIngredients((prevIngredientList) => [
+      ...prevIngredientList,
+      newIngredient,
+    ]);
   }
   return (
     <main>
@@ -24,7 +25,21 @@ export default function MainContent() {
         />
         <button>Add Ingredient</button>
       </form>
-      <ul>{ingredientsList}</ul>
+      {myingredients.length > 0 && (
+        <section>
+          <h2>Ingredients on hand:</h2>
+          <ul className="ingredients-list" aria-live="polite">
+            {ingredientsList}
+          </ul>
+          <div className="get-recipe-container">
+            <div>
+              <h3>Ready for a recipe?</h3>
+              <p>Generate a recipe from your list of ingredients.</p>
+            </div>
+            <button>Get a recipe</button>
+          </div>
+        </section>
+      )}
     </main>
   );
 }
