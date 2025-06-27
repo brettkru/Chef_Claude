@@ -1,6 +1,7 @@
 import React from "react";
 import Recipe from "./clauderecipe";
 import Ingredients from "./ingredients";
+import { getRecipeFromChefClaude } from "../ai"
 
 export default function MainContent() {
   // States
