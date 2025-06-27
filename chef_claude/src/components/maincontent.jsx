@@ -3,6 +3,7 @@ import Recipe from "./clauderecipe";
 import Ingredients from "./ingredients";
 
 export default function MainContent() {
+  // States
   const [myingredients, setMyIngredients] = React.useState([]);
 
   const [recipeShown, setRecipeShown] = React.useState(false);
@@ -11,6 +12,10 @@ export default function MainContent() {
     return <li key={ingredient}>{ingredient}</li>;
   });
 
+  // Test
+  console.log(import.meta.env.VITE_ANTHROPIC_API_KEY);
+
+  // Functions
   function toggleRecipeShown() {
     setRecipeShown((prev) => !prev);
   }
