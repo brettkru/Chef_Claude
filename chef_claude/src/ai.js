@@ -5,7 +5,8 @@ You are an assistant that receives a list of ingredients a user has. Suggest a r
 `;
 
 const anthropic = new Anthropic({
-  apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY, // Secured via .env
+  apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
+  dangerouslyAllowBrowser: true  // ⚠️ Not for production!
 });
 
 export async function getRecipeFromChefClaude(ingredientsArr) {

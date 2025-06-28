@@ -7,18 +7,12 @@ export default function MainContent() {
   // States
   const [myingredients, setMyIngredients] = React.useState([]);
 
-  const [recipeShown, setRecipeShown] = React.useState(false);
-
-  const ingredientsList = myingredients.map((ingredient) => {
-    return <li key={ingredient}>{ingredient}</li>;
-  });
-
-  // Test
-  console.log(import.meta.env.VITE_ANTHROPIC_API_KEY);
+  const [recipe, setRecipe] = React.useState(false);
 
   // Functions
-  function toggleRecipeShown() {
-    setRecipeShown((prev) => !prev);
+  async function getRecipe() {
+   const recipeMarkdown = await getRecipeFromChefClaude(myingredients)
+   setRecipe(recipeMarkdown)
   }
 
   function addIngredient(formData) {
@@ -42,10 +36,10 @@ export default function MainContent() {
       {myingredients.length > 0 && (
         <Ingredients
           myingredients={myingredients}
-          toggleRecipeShown={toggleRecipeShown}
+          getRecipe={getRecipe}
         />
       )}
-      {recipeShown && <Recipe />}
+      {recipe && <Recipe recipe={recipe} />}
     </main>
   );
 }
